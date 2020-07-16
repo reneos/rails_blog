@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe User do
+RSpec.describe User, type: :model do
   context 'validations' do
     it 'ensures presence of email' do
       user = User.create
