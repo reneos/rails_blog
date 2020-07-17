@@ -29,7 +29,13 @@ RSpec.describe 'user views a post' do
     end
   end
 
-  context 'the post is published'
+  context 'the post is published' do
+    it 'does not display a notice that the post is not published' do
+      create_published_post
+      visit post_path(Post.last)
+      expect(page).to_not have_text('You are viewing an unpublished post.')
+    end
+  end
 
   def create_unpublished_post
     visit new_post_path
