@@ -36,19 +36,4 @@ RSpec.describe 'user views a post' do
       expect(page).to_not have_text('You are viewing an unpublished post.')
     end
   end
-
-  def create_unpublished_post
-    visit new_post_path
-    fill_in 'Title', with: 'Blog Title'
-    fill_in 'Content', with: 'This is a blog post'
-    click_on 'Create Post'
-  end
-
-  def create_published_post
-    visit new_post_path
-    fill_in 'Title', with: 'Blog Title'
-    fill_in 'Content', with: 'This is a blog post'
-    page.check('post[is_published]')
-    click_on 'Create Post'
-  end
 end
