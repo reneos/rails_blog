@@ -1,6 +1,9 @@
 require 'rails_helper'
 
 RSpec.describe Post, type: :model do
+
+  subject(:post) { Post.create }
+
   let(:user) do
     User.create(
       username: 'username',
@@ -9,9 +12,13 @@ RSpec.describe Post, type: :model do
     )
   end
 
-  context 'validations' do
-    subject(:post) { Post.create }
+  context 'initialize' do
+    it 'sets is_published to false by default' do
+      expect(post.is_published).to be false
+    end
+  end
 
+  context 'validations' do
     it 'enforces presence of title' do
       verify_error_message(post, :title, "can't be blank")
     end
@@ -20,9 +27,6 @@ RSpec.describe Post, type: :model do
     end
     it 'enforces presence of user' do
       verify_error_message(post, :user, 'must exist')
-    end
-    it 'sets is_published to false by default' do
-      expect(post.is_published).to be false
     end
   end
 
