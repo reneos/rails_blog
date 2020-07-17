@@ -3,5 +3,9 @@
     <%= f.input :is_published %>
     <%= f.input :publish_date, html5: true %>
     <%= f.input :content %>
-    <%= f.submit 'Create Post' %>
+    <% if post.new_record? %>
+      <%= f.submit 'Create Post' %>
+    <% else %>
+      <%= f.submit 'Save Post' %>
+    <% end %>
 <% end %>

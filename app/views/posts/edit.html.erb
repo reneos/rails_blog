@@ -1,1 +1,3 @@
 <%= render 'post_form', post: @post %>
+<% view_post_text = @post.is_published ? 'View Post' : 'Preview Post' %>
+<%= link_to view_post_text, post_path(@post) %>

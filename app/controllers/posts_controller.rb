@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-  before_action :find_post, only: [:edit]
+  before_action :find_post, only: [:edit, :update]
 
   def new
     @post = Post.new
@@ -16,6 +16,14 @@ class PostsController < ApplicationController
   end
 
   def edit
+  end
+
+  def update
+    if @post.update(post_params)
+      redirect_to edit_post_path(@post)
+    else
+      render :edit
+    end
   end
 
   private
