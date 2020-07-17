@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe 'Submitting new post form' do
+RSpec.describe 'Submitting new post form' do
   before(:each) do
     login_as(FactoryBot.create(:user))
   end
@@ -23,7 +23,7 @@ describe 'Submitting new post form' do
     end
 
     it 'displays a preview post button' do
-      expect(page).to have_button('Preview Post')
+      expect(page).to have_link('Preview Post')
     end
   end
 
@@ -45,7 +45,7 @@ describe 'Submitting new post form' do
     end
 
     it 'displays a view post button' do
-      expect(page).to have_button('View Post')
+      expect(page).to have_link('View Post')
     end
   end
 end

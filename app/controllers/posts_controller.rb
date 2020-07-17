@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-  before_action :find_post, only: [:edit, :update]
+  before_action :find_post, only: [:edit, :update, :show, :publish]
 
   def new
     @post = Post.new
@@ -24,6 +24,15 @@ class PostsController < ApplicationController
     else
       render :edit
     end
+  end
+
+  def show
+  end
+
+  def publish
+    @post.is_published = true
+    @post.save
+    redirect_to post_path(@post)
   end
 
   private

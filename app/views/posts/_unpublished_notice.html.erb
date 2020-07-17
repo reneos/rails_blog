@@ -1,0 +1,7 @@
+<% unless @post.is_published %>
+  <div class="notice">
+    You are viewing an unpublished post.
+    <%= link_to 'Publish Post', publish_post_path(@post), method: :patch %>
+    <%= link_to 'Edit Post', edit_post_path(@post) %>
+  </div>
+<% end %>
