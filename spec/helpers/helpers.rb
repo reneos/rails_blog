@@ -11,9 +11,6 @@ module Helpers
     end
   end
 
-  def create_many_unpublished_posts(quantity, user)
-  end
-
   def create_unpublished_post
     visit new_post_path
     fill_in 'Title', with: 'Blog Title'
