@@ -2,7 +2,7 @@ class PostsController < ApplicationController
   before_action :find_post, only: [:edit, :update, :show, :publish]
 
   def index
-    @posts = Post.published
+    @posts = Post.published.paginate(:page => params[:page])
   end
 
   def new

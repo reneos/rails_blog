@@ -62,3 +62,6 @@ gem 'devise'
 # Helpers
 gem 'simple_form'
 gem 'autoprefixer-rails'
+
+# Views
+gem 'will_paginate'
