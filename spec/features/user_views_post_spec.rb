@@ -2,7 +2,8 @@ require 'rails_helper'
 
 RSpec.describe 'user views a post' do
   before(:each) do
-    login_as(FactoryBot.create(:user))
+    @user = FactoryBot.create(:user)
+    login_as(@user)
   end
 
   it 'it displays the post title, content, and publish date' do

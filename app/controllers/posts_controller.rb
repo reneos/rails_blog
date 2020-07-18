@@ -1,6 +1,10 @@
 class PostsController < ApplicationController
   before_action :find_post, only: [:edit, :update, :show, :publish]
 
+  def index
+    @posts = Post.published
+  end
+
   def new
     @post = Post.new
   end
