@@ -19,5 +19,12 @@ RSpec.describe 'user can view index of posts' do
       visit posts_path
       expect(page).to have_text('Blog Title', count: 25)
     end
+
+    it 'displays the correct number of posts on each page' do
+      FactoryBot.create_list(:post, 40, user: @user, is_published: true)
+      visit posts_path
+      click_on '2'
+      expect(page).to have_text('Blog Title', count: 15)
+    end
   end
 end
