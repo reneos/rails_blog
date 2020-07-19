@@ -9,6 +9,10 @@ class Post < ApplicationRecord
 
   self.per_page = 25
 
+  def self.search(query)
+    Post.where(['content iLIKE :query OR title iLIKE :query', query: "%#{query}%"]).published
+  end
+
   def published?
     is_published
   end

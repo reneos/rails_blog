@@ -3,7 +3,12 @@ class PostsController < ApplicationController
   skip_before_action :authenticate_user!, only: [:index]
 
   def index
-    @posts = Post.published.paginate(:page => params[:page])
+    if params[:q]
+      @posts = Post.search(params[:q]).paginate(:page => params[:page])
+      flash.now[:notice] = "Sorry, no results found for '#{params[:q]}'" if @posts.empty?
+    else
+      @posts = Post.published.paginate(:page => params[:page])
+    end
   end
 
   def new

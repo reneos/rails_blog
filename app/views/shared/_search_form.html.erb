@@ -1,0 +1,4 @@
+<%= simple_form_for :search, url: posts_path, method: :get do |f| %>
+  <%= f.input :q, input_html: { name: 'q' }, label: "Search" %>
+  <%= f.submit "Search", name: nil %>
+<% end %>
