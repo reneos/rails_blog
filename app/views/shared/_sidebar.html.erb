@@ -1,0 +1,14 @@
+<div>
+  <%= link_to "All Posts", posts_path %>
+  <% if ActsAsTaggableOn::Tag.any? %>
+    <h2>Posts by Tag</h2>
+    <ul>
+      <% ActsAsTaggableOn::Tag.all.each do |tag| %>
+      <li>
+        <%= link_to tag.name, posts_path(tag: tag.name)  %>
+      </li>
+      <% end %>
+    </ul>
+  <% end %>
+
+</div>
