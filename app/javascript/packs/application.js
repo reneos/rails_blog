@@ -15,3 +15,10 @@ require("channels")
 //
 // const images = require.context('../images', true)
 // const imagePath = (name) => images(name, true)
+
+// External imports
+
+
+// Turbolinks
+document.addEventListener('turbolinks:load', () => {
+});
