@@ -8,6 +8,7 @@ class Post < ApplicationRecord
   validates :title, presence: true
   validates :content, presence: true
   validates :publish_date, presence: true
+  validate :publish_date_and_published
 
   scope :published, -> { where(is_published: true).order(:publish_date) }
   scope :unpublished, -> { where(is_published: false).order(:publish_date) }
@@ -29,6 +30,15 @@ class Post < ApplicationRecord
   end
 
   private
+
+  def publish_date_and_published
+    if published? && publish_date > Time.now
+      errors.add(
+        :publish_date,
+        "Can't be in the future if 'is_published' is checked. Posts will automatically be published if set in the future."
+      )
+    end
+  end
 
   def set_publish_date
     self.publish_date ||= Time.now
