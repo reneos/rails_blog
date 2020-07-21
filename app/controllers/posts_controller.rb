@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-  before_action :find_post, only: [:edit, :update, :show, :publish]
+  before_action :find_post, only: [:edit, :update, :show, :destroy, :publish, :unpublish]
   skip_before_action :authenticate_user!, only: [:index]
 
   def index
@@ -39,8 +39,20 @@ class PostsController < ApplicationController
   def show
   end
 
+  def destroy
+    @post.destroy
+    flash[:notice] = "Post entitled '#{@post.title}' has been deleted."
+    redirect_to dashboard_path
+  end
+
   def publish
     @post.is_published = true
+    @post.save
+    redirect_to post_path(@post)
+  end
+
+  def unpublish
+    @post.is_published = false
     @post.save
     redirect_to post_path(@post)
   end

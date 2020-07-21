@@ -1,0 +1,11 @@
+<h1>Your posts</h1>
+
+<div>
+  <h2>Published posts</h2>
+  <%= render 'post_list', posts: @published_posts, published: true %>
+</div>
+
+<div>
+  <h2>Unpublished posts</h2>
+  <%= render 'post_list', posts: @unpublished_posts, published: false %>
+</div>

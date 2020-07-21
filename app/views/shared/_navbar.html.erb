@@ -1,4 +1,12 @@
 <nav>
   <h1>Blog</h1>
   <%= render 'shared/search_form' %>
+  <% if user_signed_in? %>
+    <%= current_user.username %>
+    <%= link_to 'New post', new_post_path %>
+    <%= link_to 'Dashboard', dashboard_path %>
+  <% else %>
+    <%= link_to 'Login', new_user_session_path  %>
+    <%= link_to 'Register', new_user_registration_path %>
+  <% end %>
 </nav>

@@ -4,6 +4,8 @@ Rails.application.routes.draw do
   resources :posts do
     member do
       patch '/publish', to: 'posts#publish'
+      patch '/unpublish', to: 'posts#unpublish'
     end
   end
+  get 'dashboard', to: 'dashboard#index'
 end
