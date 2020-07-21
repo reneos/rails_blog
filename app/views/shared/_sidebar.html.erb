@@ -1,15 +1,13 @@
-<div>
-  <%= link_to "All Posts", posts_path %>
-  <% if ActsAsTaggableOn::Tag.any? %>
-    <h2>Posts by Tag</h2>
-    <ul>
-      <% ActsAsTaggableOn::Tag.where('taggings_count > 0').each do |tag| %>
-      <li>
-        <% link_text = "#{tag.name} (#{tag.taggings_count})" %>
-        <%= link_to link_text, posts_path(tag: tag.name)  %>
-      </li>
-      <% end %>
-    </ul>
-  <% end %>
 
-</div>
+<% if ActsAsTaggableOn::Tag.any? %>
+  <h3>Posts by Tag</h3>
+  <ul class="list-group">
+    <% Post.published.tag_counts_on(:tags).order(:name).each do |tag| %>
+    <li class="list-group-item d-flex justify-content-between align-items-center">
+      <%= link_to tag.name, posts_path(tag: tag.name)  %>
+      <span class="badge badge-primary badge-pill"><%= Post.published.tagged_with(tag).count %></span>
+    </li>
+    <% end %>
+  </ul>
+<% end %>
+

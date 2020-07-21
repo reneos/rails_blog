@@ -1,14 +1,21 @@
-<%= render 'shared/sidebar' %>
-<div>
-  <% if @posts.empty? %>
-    No posts found.
-  <% else %>
-    <% @posts.each do |post| %>
-      <div>
-        <h2><%= link_to post.title, post_path(post) %></h2>
-        <div><%= truncate(post.stripped_content, length: 100, omission: '... (continued)') %></div>
+<div class="row">
+  <div class="col-12 col-md-4">
+    <%= render 'shared/sidebar' %>
+  </div>
+  <div class="col-12 col-md-8">
+    <% if @posts.empty? %>
+      <div class="alert alert-secondary">
+        No posts found.
       </div>
+    <% else %>
+      <% @posts.each do |post| %>
+        <div>
+          <h2><%= link_to post.title, post_path(post) %></h2>
+          <div><%= truncate(post.stripped_content, length: 100, omission: '... (continued)') %></div>
+        </div>
+      <% end %>
+      <%= will_paginate @posts %>
     <% end %>
-    <%= will_paginate @posts %>
-  <% end %>
+  </div>
 </div>
+

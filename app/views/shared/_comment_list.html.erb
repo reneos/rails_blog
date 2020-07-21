@@ -1,10 +1,12 @@
 <% comments.each do |comment| %>
-  <div id="comment-<%= @comment.id %>">
-    <h3><%= comment.name %></h3>
+  <div class="comment" id="comment-<%= @comment.id %>">
+    <div class="d-flex justify-content-between mb-3">
+      <strong><%= comment.name %></strong>
+      <span><%= comment.created_at.strftime('%Y-%m-%d') %></span>
+    </div>
     <p><%= comment.content %></p>
-    <div><%= comment.created_at %></div>
     <% if policy(comment).destroy? %>
-      <%= link_to 'Delete', comment_path(comment), method: :delete %>
+      <%= link_to 'Delete', comment_path(comment), method: :delete, class: 'badge badge-pill badge-danger' %>
     <% end %>
   </div>
 <% end %>
