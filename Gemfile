@@ -63,6 +63,7 @@ gem 'pundit'
 # Helpers
 gem 'simple_form'
 gem 'autoprefixer-rails'
+gem 'turbolinks_render'
 
 
 # Views

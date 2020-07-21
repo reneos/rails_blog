@@ -1,7 +1,7 @@
 class PostsController < ApplicationController
   before_action :find_post, only: [:edit, :update, :show, :destroy, :publish, :unpublish]
   before_action :set_tags, only: [:new, :edit]
-  skip_before_action :authenticate_user!, only: [:index]
+  skip_before_action :authenticate_user!, only: [:index, :show]
 
   def index
     if params[:q]
@@ -43,6 +43,7 @@ class PostsController < ApplicationController
 
   def show
     authorize @post
+    @comment = Comment.new
   end
 
   def destroy

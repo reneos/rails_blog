@@ -9,6 +9,8 @@ Rails.application.routes.draw do
     collection do
       get '/tagged/:tag', to: 'posts#tagged'
     end
+    resources :comments, only: :create
   end
+  resources :comments, only: :destroy
   get 'dashboard', to: 'dashboard#index'
 end
