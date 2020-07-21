@@ -1,12 +1,13 @@
-<ul class="list-group">
+<ul class="list-group list-group-flush">
 <% posts.each do |post| %>
   <li class="list-group-item d-flex align-items-center">
     <span>
-      <div><%= link_to post.title, post_path(post) %></div>
-      <span class="badge badge-pill badge-light">
+      <div><strong><%= link_to post.title, post_path(post) %></strong></div>
+      <span class="small mr-1">
         <%= post.publish_date.strftime('%Y-%m-%d') %>
       </span>
-      <span class="badge badge-pill badge-light">
+      |
+      <span class="small ml-1">
         <%= pluralize(post.comments.count, 'comment') %>
       </span>
     </span>
