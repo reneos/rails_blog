@@ -45,7 +45,7 @@ RSpec.describe 'user can search through posts' do
 
   def execute_search(query)
     visit root_path
-    fill_in 'search_q', with: query
+    fill_in 'search-bar', with: query
     click_on 'Search'
   end
 end
