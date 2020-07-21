@@ -58,6 +58,7 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 # Users
 gem 'devise'
+gem 'pundit'
 
 # Helpers
 gem 'simple_form'

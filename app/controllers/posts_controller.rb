@@ -4,20 +4,22 @@ class PostsController < ApplicationController
 
   def index
     if params[:q]
-      @posts = Post.search(params[:q]).paginate(:page => params[:page])
+      @posts = policy_scope(Post).search(params[:q]).paginate(:page => params[:page])
     else
-      @posts = Post.published.paginate(:page => params[:page])
+      @posts = policy_scope(Post).paginate(:page => params[:page])
     end
     @posts = @posts.tagged_with(params[:tag].split(' '), any: true) if params[:tag]
   end
 
   def new
     @post = Post.new
+    authorize @post
   end
 
   def create
     @post = Post.new(post_params)
     @post.user = current_user
+    authorize @post
     if @post.save
       redirect_to edit_post_path(@post)
     else
@@ -26,9 +28,11 @@ class PostsController < ApplicationController
   end
 
   def edit
+    authorize @post
   end
 
   def update
+    authorize @post
     if @post.update(post_params)
       redirect_to edit_post_path(@post)
     else
@@ -37,21 +41,25 @@ class PostsController < ApplicationController
   end
 
   def show
+    authorize @post
   end
 
   def destroy
     @post.destroy
+    authorize @post
     flash[:notice] = "Post entitled '#{@post.title}' has been deleted."
     redirect_to dashboard_path
   end
 
   def publish
+    authorize @post
     @post.is_published = true
     @post.save
     redirect_to post_path(@post)
   end
 
   def unpublish
+    authorize @post
     @post.is_published = false
     @post.save
     redirect_to post_path(@post)
