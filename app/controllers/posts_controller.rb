@@ -33,6 +33,7 @@ class PostsController < ApplicationController
   end
 
   def update
+    remove_attachment if params[:other][:remove_attachment] == "1"
     authorize @post
     if @post.update(post_params)
       redirect_to edit_post_path(@post)
@@ -69,6 +70,10 @@ class PostsController < ApplicationController
 
   private
 
+  def remove_attachment
+    @post.photo.purge
+  end
+
   def set_tags
     @tags = ActsAsTaggableOn::Tag.all.map(&:name)
   end
@@ -83,6 +88,7 @@ class PostsController < ApplicationController
       :is_published,
       :publish_date,
       :content,
+      :photo,
       tag_list: []
     )
   end

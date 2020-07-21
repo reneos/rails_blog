@@ -1,5 +1,9 @@
 <%= render 'posts/unpublished_notice', post: @post %>
 
+<% if @post.photo.attached? %>
+  <%= image_tag @post.photo, alt: @post.title %>
+<% end %>
+
 <h1><%= @post.title %></h1>
 <div class="post-meta">
   <%= @post.publish_date.strftime('%Y-%m-%d') %>
