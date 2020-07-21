@@ -1,15 +1,17 @@
 <%= simple_form_for(post) do |f| %>
     <%= f.input :title %>
     <%= f.input :is_published %>
-    <%= f.input :publish_date, as: :string, input_html: { id: 'publish_date_picker' } %>
-    <%= f.input :tag_list, collection: @tags, input_html: { id: 'tag_picker', multiple: true } %>
+    <%= f.input :publish_date, as: :string, input_html: { id: 'publish_date_picker' },
+      hint: 'If you set the publish date to the future, your post will automatically be published at that time.'
+    %>
+    <%= f.input :tag_list, collection: @tags, input_html: { id: 'tag_picker', multiple: true }, hint: 'You can pick multiple tags' %>
     <% if post.photo.attached? %>
       <%= simple_fields_for :other do |o| %>
         <%= image_tag post.photo %>
         <%= o.input :remove_attachment, as: :boolean, label: "Remove current attachment?" %>
       <% end %>
     <% else %>
-      <%= f.input :photo, label: "Featured image (optional)" %>
+      <%= f.input :photo, label: "Featured image (optional)", hint: 'This image appears at the top of the post' %>
     <% end %>
     <%= f.text_area :content, :class => "tinymce", :rows => 15, :cols => 120 %>
     <% if post.new_record? %>

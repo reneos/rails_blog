@@ -4,6 +4,7 @@ class Post < ApplicationRecord
   has_one_attached :photo, dependent: :destroy
 
   after_initialize :set_publish_date
+  after_commit :async_update
 
   validates :title, presence: true
   validates :content, presence: true
@@ -30,6 +31,12 @@ class Post < ApplicationRecord
   end
 
   private
+
+  def async_update
+    if !published? && publish_date > Time.now
+      PublishPostJob.set(wait_until: publish_date).perform_later(id)
+    end
+  end
 
   def publish_date_and_published
     if published? && publish_date > Time.now
