@@ -17,11 +17,14 @@ require("channels")
 // const imagePath = (name) => images(name, true)
 
 // External imports
+import 'bootstrap';
 import initFlatpickr from '../components/init_flatpickr'
+import initSelect2 from '../components/init_select2'
 
 
 
 // Turbolinks
 document.addEventListener('turbolinks:load', () => {
   initFlatpickr();
+  initSelect2();
 });

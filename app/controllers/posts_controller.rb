@@ -1,5 +1,6 @@
 class PostsController < ApplicationController
   before_action :find_post, only: [:edit, :update, :show, :destroy, :publish, :unpublish]
+  before_action :set_tags, only: [:new, :edit]
   skip_before_action :authenticate_user!, only: [:index]
 
   def index
@@ -66,6 +67,9 @@ class PostsController < ApplicationController
   end
 
   private
+  def set_tags
+    @tags = ActsAsTaggableOn::Tag.all.map(&:name)
+  end
 
   def find_post
     @post = Post.find(params[:id])
@@ -77,7 +81,7 @@ class PostsController < ApplicationController
       :is_published,
       :publish_date,
       :content,
-      :tag_list
+      tag_list: []
     )
   end
 end

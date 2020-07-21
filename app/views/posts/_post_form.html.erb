@@ -2,7 +2,7 @@
     <%= f.input :title %>
     <%= f.input :is_published %>
     <%= f.input :publish_date, as: :string, input_html: { id: 'publish_date_picker' } %>
-    <%= f.input :tag_list %>
+    <%= f.input :tag_list, collection: @tags, input_html: { id: 'tag_picker', multiple: true } %>
     <%= f.input :content %>
     <% if post.new_record? %>
       <%= f.submit 'Create Post' %>
