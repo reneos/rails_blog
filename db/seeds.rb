@@ -1,5 +1,10 @@
+
+puts 'Destroying all posts and users'
+
 Post.destroy_all
 User.destroy_all
+
+puts 'Creating 6 users'
 
 %w[nicole kyle tom mary bob jenny].each do |name|
   User.create!(
@@ -8,6 +13,8 @@ User.destroy_all
     password: 'password'
   )
 end
+
+puts 'Created 6 users'
 
 images = [
   'https://images.unsplash.com/photo-1551739440-5dd934d3a94a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1300&q=80',
@@ -20,13 +27,16 @@ images = [
   'https://images.unsplash.com/photo-1483389127117-b6a2102724ae?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1567&q=80'
 ]
 
-40.times do
+puts 'Creating 30 published posts....'
+
+30.times do
   post = Post.create(
-    title: "#{Faker::Hacker.ingverb} #{Faker::Hacker.adjective} #{Faker::Hacker.noun}",
+    title: [Faker::Hacker.ingverb, Faker::Hacker.adjective, Faker::Hacker.noun].map(&:capitalize).join(' '),
     user: User.all.sample,
-    content: (0..5).map { |_e| Faker::Hacker.say_something_smart }.join('. '),
+    content: (0..5).map { |_e| Faker::Hacker.say_something_smart }.join(' '),
     publish_date: Date.today - rand(0..7),
-    is_published: true
+    is_published: true,
+    tag_list: (0..rand(0..3)).map { |_e| Faker::Hacker.noun }.join(', ')
   )
   if images.any?
     file = URI.open(images.pop)
@@ -34,3 +44,33 @@ images = [
     post.save!
   end
 end
+
+puts 'Created 30 posts.'
+
+puts 'Creating 15 unpublished posts....'
+
+15.times do
+  Post.create(
+    title: "#{Faker::Hacker.ingverb} #{Faker::Hacker.adjective} #{Faker::Hacker.noun}",
+    user: User.all.sample,
+    content: (0..5).map { |_e| Faker::Hacker.say_something_smart }.join(' '),
+    publish_date: Date.today - rand(0..7),
+    is_published: false,
+    tag_list: (0..rand(0..3)).map { |_e| Faker::Hacker.noun }.join(', ')
+  )
+end
+
+puts 'Created 15 unpublished posts.'
+
+puts 'Creating 30 comments on published posts...'
+
+30.times do
+  post = Post.published.sample
+  Comment.create!(
+    name: Faker::Internet.username,
+    content: Faker::Hacker.say_something_smart,
+    post: post
+  )
+end
+
+puts 'Created 30 comments'

@@ -1,7 +1,7 @@
 class PostPolicy < ApplicationPolicy
   class Scope < Scope
     def resolve
-      scope.where(is_published: true)
+      scope.where(is_published: true).order(publish_date: :desc)
     end
 
     def resolve_dashboard
