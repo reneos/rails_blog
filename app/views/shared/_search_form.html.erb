@@ -1,4 +1,4 @@
-<%= simple_form_for :search, url: posts_path, method: :get do |f| %>
-  <%= f.input :q, input_html: { name: 'q' }, label: "Search" %>
-  <%= f.submit "Search", name: nil %>
+<%= simple_form_for :search, url: posts_path, html: { class: 'form-inline my-2 my-lg-0' }, method: :get do |f| %>
+  <%= f.input :q, input_html: { name: 'q', id: 'search-bar', placeholder: 'Search', class: ' mr-sm-2' }, label: false %>
+  <%= f.submit "Search", name: nil, class: 'btn btn-outline-success my-2 my-sm-0' %>
 <% end %>
