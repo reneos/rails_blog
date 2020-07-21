@@ -7,6 +7,8 @@ class Post < ApplicationRecord
   scope :published, -> { where(is_published: true).order(:publish_date) }
   scope :unpublished, -> { where(is_published: false).order(:publish_date) }
 
+  acts_as_taggable_on :tags
+
   self.per_page = 25
 
   def self.search(query)

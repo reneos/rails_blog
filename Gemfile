@@ -63,5 +63,9 @@ gem 'devise'
 gem 'simple_form'
 gem 'autoprefixer-rails'
 
+
 # Views
 gem 'will_paginate'
+
+# Tagging posts
+gem 'acts-as-taggable-on', '~> 6.0'
