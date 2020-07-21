@@ -1,7 +1,7 @@
 <%= simple_form_for(post) do |f| %>
     <%= f.input :title %>
     <%= f.input :is_published %>
-    <%= f.input :publish_date, html5: true %>
+    <%= f.input :publish_date, as: :string, input_html: { id: 'publish_date_picker' } %>
     <%= f.input :tag_list %>
     <%= f.input :content %>
     <% if post.new_record? %>

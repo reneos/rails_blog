@@ -1,8 +1,11 @@
 class Post < ApplicationRecord
   belongs_to :user
 
+  after_initialize :set_publish_date
+
   validates :title, presence: true
   validates :content, presence: true
+  validates :publish_date, presence: true
 
   scope :published, -> { where(is_published: true).order(:publish_date) }
   scope :unpublished, -> { where(is_published: false).order(:publish_date) }
@@ -17,5 +20,11 @@ class Post < ApplicationRecord
 
   def published?
     is_published
+  end
+
+  private
+
+  def set_publish_date
+    self.publish_date ||= Time.now
   end
 end
