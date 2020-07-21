@@ -9,9 +9,13 @@
       </div>
     <% else %>
       <% @posts.each do |post| %>
-        <div>
+        <div class="post_box mb-3">
           <h2><%= link_to post.title, post_path(post) %></h2>
-          <div><%= truncate(post.stripped_content, length: 100, omission: '... (continued)') %></div>
+          <div class="mb-2"><%= truncate(post.stripped_content, length: 100, omission: '... (continued)') %></div>
+          <div class="d-flex justify-content-between align-items-center">
+            <span class="small"><%= post.publish_date.strftime('%Y-%m-%d') %></span>
+            <span><%= render 'posts/tag_list', tags: post.tags %></span>
+          </div>
         </div>
       <% end %>
       <%= will_paginate @posts %>

@@ -48,6 +48,6 @@ class PostPolicy < ApplicationPolicy
   private
 
   def owner_or_admin?
-    record.user == user || user.admin?
+    user && (record.user == user || user.admin?)
   end
 end

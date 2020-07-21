@@ -30,3 +30,7 @@ document.addEventListener('turbolinks:load', () => {
   initSelect2();
   initMCE();
 });
+
+document.addEventListener("turbolinks:before-cache", function() {
+  tinymce.remove();
+})

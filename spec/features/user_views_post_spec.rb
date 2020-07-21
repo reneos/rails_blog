@@ -16,7 +16,7 @@ RSpec.describe 'user views a post' do
 
     it 'allows the user to publish the post with a publish button' do
       visit post_path(post)
-      click_on('Publish Post')
+      click_on('Publish')
       post.reload
       expect(post).to be_published
     end

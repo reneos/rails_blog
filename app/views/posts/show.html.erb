@@ -2,9 +2,14 @@
   <div class="col">
     <%= render 'posts/unpublished_notice', post: @post %>
     <% if @post.photo.attached? %>
-      <%= image_tag @post.photo, alt: @post.title %>
+      <%= image_tag @post.photo, alt: @post.title, class: 'featured-img mb-3 rounded' %>
     <% end %>
     <h1><%= @post.title %></h1>
+    <% if policy(@post).edit? %>
+      <div class="mb-3">
+        <%= render 'shared/post_controls', post: @post %>
+      </div>
+    <% end %>
     <div class="d-flex align-items-center justify-content-between">
       <span>
         <strong>Posted on:</strong> <%= @post.publish_date.strftime('%Y-%m-%d') %>

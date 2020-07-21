@@ -33,7 +33,7 @@ class PostsController < ApplicationController
   end
 
   def update
-    remove_attachment if params[:other][:remove_attachment] == "1"
+    remove_attachment if params[:other] && params[:other][:remove_attachment] == "1"
     authorize @post
     if @post.update(post_params)
       redirect_to edit_post_path(@post)

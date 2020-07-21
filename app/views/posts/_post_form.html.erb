@@ -11,10 +11,10 @@
     <% else %>
       <%= f.input :photo, label: "Featured image (optional)" %>
     <% end %>
-    <%= f.text_area :content, :class => "tinymce", :rows => 40, :cols => 120 %>
+    <%= f.text_area :content, :class => "tinymce", :rows => 15, :cols => 120 %>
     <% if post.new_record? %>
-      <%= f.submit 'Create Post' %>
+      <%= f.submit 'Create Post', class: "btn btn-primary mt-2" %>
     <% else %>
-      <%= f.submit 'Save Post' %>
+      <%= f.submit 'Save Post', class: "btn btn-primary mt-2" %>
     <% end %>
 <% end %>
