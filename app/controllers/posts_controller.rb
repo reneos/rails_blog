@@ -5,11 +5,10 @@ class PostsController < ApplicationController
   def index
     if params[:q]
       @posts = Post.search(params[:q]).paginate(:page => params[:page])
-      flash.now[:notice] = "Sorry, no results found for '#{params[:q]}'" if @posts.empty?
     else
       @posts = Post.published.paginate(:page => params[:page])
     end
-    @posts = @posts.tagged_with(params[:tag]) if params[:tag]
+    @posts = @posts.tagged_with(params[:tag].split(' '), any: true) if params[:tag]
   end
 
   def new

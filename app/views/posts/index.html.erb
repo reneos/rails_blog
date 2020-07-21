@@ -1,9 +1,14 @@
+<%= render 'shared/sidebar' %>
 <div>
-  <% @posts.each do |post| %>
-    <div>
-      <h2><%= post.title %></h2>
-      <div><%= post.content %></div>
-    </div>
+  <% if @posts.empty? %>
+    No posts found.
+  <% else %>
+    <% @posts.each do |post| %>
+      <div>
+        <h2><%= post.title %></h2>
+        <div><%= post.content %></div>
+      </div>
+    <% end %>
+    <%= will_paginate @posts %>
   <% end %>
-  <%= will_paginate @posts %>
 </div>

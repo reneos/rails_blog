@@ -40,7 +40,7 @@ RSpec.describe 'user can search through posts' do
   it 'displays a notice when no results are found' do
     execute_search('banana')
 
-    expect(page).to have_text("Sorry, no results found for 'banana'")
+    expect(page).to have_text("No posts found.")
   end
 
   def execute_search(query)
