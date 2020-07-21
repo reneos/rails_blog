@@ -65,9 +65,7 @@ gem 'simple_form'
 gem 'autoprefixer-rails'
 gem 'turbolinks_render'
 
-
-# Views
+# Posts
 gem 'will_paginate'
-
-# Tagging posts
 gem 'acts-as-taggable-on', '~> 6.0'
+gem 'tinymce-rails'

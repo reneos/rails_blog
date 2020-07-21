@@ -23,6 +23,10 @@ class Post < ApplicationRecord
     is_published
   end
 
+  def stripped_content
+    ActionView::Base.full_sanitizer.sanitize(content)
+  end
+
   private
 
   def set_publish_date

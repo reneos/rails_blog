@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
   before_action :find_post, only: [:edit, :update, :show, :destroy, :publish, :unpublish]
-  before_action :set_tags, only: [:new, :edit]
+  before_action :set_tags, only: [:new, :edit, :create, :update]
   skip_before_action :authenticate_user!, only: [:index, :show]
 
   def index
@@ -68,6 +68,7 @@ class PostsController < ApplicationController
   end
 
   private
+
   def set_tags
     @tags = ActsAsTaggableOn::Tag.all.map(&:name)
   end

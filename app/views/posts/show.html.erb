@@ -2,11 +2,11 @@
 
 <h1><%= @post.title %></h1>
 <div class="post-meta">
-  <%= @post.publish_date %>
+  <%= @post.publish_date.strftime('%Y-%m-%d') %>
   <%= render 'posts/tag_list', tags: @post.tags %>
 </div>
 <article>
-  <%= @post.content %>
+  <%= @post.content.html_safe %>
 </article>
 
 <div>

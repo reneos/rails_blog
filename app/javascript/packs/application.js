@@ -20,6 +20,7 @@ require("channels")
 import 'bootstrap';
 import initFlatpickr from '../components/init_flatpickr'
 import initSelect2 from '../components/init_select2'
+import initMCE from '../components/init_mce';
 
 
 
@@ -27,4 +28,5 @@ import initSelect2 from '../components/init_select2'
 document.addEventListener('turbolinks:load', () => {
   initFlatpickr();
   initSelect2();
+  initMCE();
 });

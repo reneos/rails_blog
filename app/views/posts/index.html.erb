@@ -6,7 +6,7 @@
     <% @posts.each do |post| %>
       <div>
         <h2><%= link_to post.title, post_path(post) %></h2>
-        <div><%= post.content %></div>
+        <div><%= truncate(post.stripped_content, length: 100, omission: '... (continued)') %></div>
       </div>
     <% end %>
     <%= will_paginate @posts %>

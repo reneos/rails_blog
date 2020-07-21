@@ -9,7 +9,11 @@ RSpec.describe 'Submitting new post form' do
     before(:each) do
       visit new_post_path
       fill_in 'Title', with: 'Blog Title'
-      fill_in 'Content', with: 'This is a blog post'
+      # fill_in 'Content', with: 'This is a blog post'
+      within_frame("post_content_ifr") do
+        editor = page.find_by_id('tinymce')
+        editor.native.send_keys 'This is a blog post'
+      end
       click_on 'Create Post'
     end
 
