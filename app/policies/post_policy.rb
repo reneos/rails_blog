@@ -3,6 +3,14 @@ class PostPolicy < ApplicationPolicy
     def resolve
       scope.where(is_published: true)
     end
+
+    def resolve_dashboard
+      if user.admin?
+        scope.all
+      else
+        scope.where(user: user)
+      end
+    end
   end
 
   def new?

@@ -1,6 +1,9 @@
 class DashboardController < ApplicationController
+  skip_after_action :verify_policy_scoped
+
   def index
-    @published_posts = current_user.posts.published
-    @unpublished_posts = current_user.posts.unpublished
+    users_posts = PostPolicy::Scope.new(current_user, Post).resolve_dashboard
+    @published_posts = users_posts.published
+    @unpublished_posts = users_posts.unpublished
   end
 end
