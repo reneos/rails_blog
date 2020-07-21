@@ -1,14 +1,24 @@
-<ul>
+<ul class="list-group">
 <% posts.each do |post| %>
-  <li>
-    <%= link_to post.title, post_path(post) %>
-    <%= link_to 'Edit', edit_post_path(post) %>
-    <% if published %>
-      <%= link_to 'Unpublish', unpublish_post_path(post), method: :patch %>
-    <% else %>
-      <%= link_to 'Publish', publish_post_path(post), method: :patch %>
-    <% end %>
-    <%= link_to 'Delete', post_path(post), method: :delete, data: { confirm: "Are you sure?" } %>
+  <li class="list-group-item d-flex align-items-center">
+    <span>
+      <div><%= link_to post.title, post_path(post) %></div>
+      <span class="badge badge-pill badge-light">
+        <%= post.publish_date.strftime('%Y-%m-%d') %>
+      </span>
+      <span class="badge badge-pill badge-light">
+        <%= pluralize(post.comments.count, 'comment') %>
+      </span>
+    </span>
+    <span class="ml-auto">
+      <%= link_to 'Edit', edit_post_path(post), class: "badge badge-secondary" %>
+      <% if published %>
+        <%= link_to 'Unpublish', unpublish_post_path(post), method: :patch, class: "badge badge-primary" %>
+      <% else %>
+        <%= link_to 'Publish', publish_post_path(post), method: :patch, class: "badge badge-primary" %>
+      <% end %>
+      <%= link_to 'Delete', post_path(post), method: :delete, data: { confirm: "Are you sure?" }, class: "badge badge-danger" %>
+    </span>
   </li>
 <% end %>
 </ul>
