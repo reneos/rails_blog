@@ -14,7 +14,7 @@ class Post < ApplicationRecord
 
   acts_as_taggable_on :tags
 
-  self.per_page = 25
+  self.per_page = 10
 
   def self.search(query)
     Post.where(['content iLIKE :query OR title iLIKE :query', query: "%#{query}%"])

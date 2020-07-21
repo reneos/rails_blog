@@ -13,6 +13,7 @@
     <div class="d-flex align-items-center justify-content-between">
       <span>
         <strong>Posted on:</strong> <%= @post.publish_date.strftime('%Y-%m-%d') %>
+        <span class="ml-3"><strong>Posted by:</strong> <%= @post.user.username %></span>
       </span>
       <span class="ml-3">
         <%= render 'posts/tag_list', tags: @post.tags %>
