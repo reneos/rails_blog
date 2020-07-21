@@ -9,6 +9,7 @@ class PostsController < ApplicationController
     else
       @posts = Post.published.paginate(:page => params[:page])
     end
+    @posts = @posts.tagged_with(params[:tag]) if params[:tag]
   end
 
   def new
@@ -68,7 +69,8 @@ class PostsController < ApplicationController
       :title,
       :is_published,
       :publish_date,
-      :content
+      :content,
+      :tag_list
     )
   end
 end

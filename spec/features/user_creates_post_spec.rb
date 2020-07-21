@@ -48,4 +48,15 @@ RSpec.describe 'Submitting new post form' do
       expect(page).to have_link('View Post')
     end
   end
+
+  it 'correctly adds tags' do
+    visit new_post_path
+    fill_in 'Title', with: 'Blog Title'
+    fill_in 'Tag list', with: 'tag1, tag2, tag3'
+    fill_in 'Content', with: 'This is a blog post'
+    page.check('post[is_published]')
+    click_on 'Create Post'
+
+    expect(Post.last.tags.length).to eq(3)
+  end
 end

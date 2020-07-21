@@ -6,6 +6,9 @@ Rails.application.routes.draw do
       patch '/publish', to: 'posts#publish'
       patch '/unpublish', to: 'posts#unpublish'
     end
+    collection do
+      get '/tagged/:tag', to: 'posts#tagged'
+    end
   end
   get 'dashboard', to: 'dashboard#index'
 end
