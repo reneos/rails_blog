@@ -1,24 +1,39 @@
 # README
+This is a little blogging application written in Rails. 
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Features
+- The blog can have multiple authors contributing posts. 
+- Posts can have rich text editing thanks to TinyMCE (table formatting, highlights, and others in addition to standard bold, italicize, etc.).
+- Posts can be tagged by multiple tags. 
+- Posts can be searched through (title and body) via keywords, or they can be filtered by tags
+- Posts can be set to asynchronously publish automatically in the future using Redis and Sidekiq
+- Users have a dashboard where they can administrate their own posts 
+- Authors can only edit and update their own posts, however admin users have access to all posts (See below for a rake task for creating admin users) 
+- Comments can be added to posts (commenters do not need to create an account). 
 
-Things you may want to cover:
+## Ruby version
+Ruby 2.6.6, Rails 6.0.3.2
 
-* Ruby version
+## Used
+- RSpec and Capybara for testing
+- Sidekiq for asynch background jobs
+- Devise/Pundit for users
+- TinyMCE for rich text editing
 
-* System dependencies
+## Database initialization
+```
+rake db:create
+rake db:migrate
+rake db:seed # Creates some dummy posts for testing as well as a few test users
+```
 
-* Configuration
+## How to run the test suite
+```
+rake
+```
 
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+## Create an admin user
+You can quickly create a new admin user using a rake task:
+```
+rake create_admin USERNAME EMAIl PASSWORD
+```
