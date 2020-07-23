@@ -56,14 +56,14 @@ class PostsController < ApplicationController
 
   def publish
     authorize @post
-    @post.is_published = true
+    @post.published!
     @post.save
     redirect_to post_path(@post)
   end
 
   def unpublish
     authorize @post
-    @post.is_published = false
+    @post.unpublished!
     @post.save
     redirect_to post_path(@post)
   end

@@ -35,7 +35,7 @@ puts 'Creating 30 published posts....'
     user: User.all.sample,
     content: (0..5).map { |_e| Faker::Hacker.say_something_smart }.join(' '),
     publish_date: Date.today - rand(0..7),
-    is_published: true,
+    is_published: 1,
     tag_list: (0..rand(0..3)).map { |_e| Faker::Hacker.noun }.join(', ')
   )
   if images.any?
@@ -55,7 +55,7 @@ puts 'Creating 15 unpublished posts....'
     user: User.all.sample,
     content: (0..5).map { |_e| Faker::Hacker.say_something_smart }.join(' '),
     publish_date: Date.today - rand(0..7),
-    is_published: false,
+    is_published: 0,
     tag_list: (0..rand(0..3)).map { |_e| Faker::Hacker.noun }.join(', ')
   )
 end

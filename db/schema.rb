@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_21_180025) do
+ActiveRecord::Schema.define(version: 2020_07_23_094247) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -49,7 +49,7 @@ ActiveRecord::Schema.define(version: 2020_07_21_180025) do
     t.bigint "user_id", null: false
     t.string "title"
     t.text "content"
-    t.boolean "is_published", default: false
+    t.integer "is_published", default: 0
     t.datetime "publish_date", default: -> { "CURRENT_TIMESTAMP" }
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false

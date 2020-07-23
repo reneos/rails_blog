@@ -18,3 +18,10 @@
     <%= render 'post_list', posts: @unpublished_posts, published: false %>
   </div>
 </div>
+
+<div class="row mb-5">
+  <div class="col">
+    <h2>Unpublished posts</h2>
+    <%= render 'post_list', posts: @scheduled_posts, published: false %>
+  </div>
+</div>

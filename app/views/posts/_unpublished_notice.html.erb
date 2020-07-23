@@ -1,5 +1,5 @@
-<% unless @post.is_published %>
+<% unless @post.published? %>
   <div class="alert alert-info">
-    You are viewing an unpublished post.
+    You are viewing <%= @post.scheduled? ? "a post scheduled for #{@post.publish_date}." : "an unpublished post." %>
   </div>
 <% end %>

@@ -13,8 +13,8 @@ RSpec.describe Post, type: :model do
   end
 
   context 'initialize' do
-    it 'sets is_published to false by default' do
-      expect(post.is_published).to be false
+    it 'sets is_published to unpublished by default' do
+      expect(post.unpublished?).to be true
     end
   end
 

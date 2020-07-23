@@ -9,10 +9,10 @@ FactoryBot.define do
     title { 'Blog Title' }
     content { 'This is a blog post' }
     trait :published do
-      is_published { true }
+      is_published { 1 }
     end
     trait :unpublished do
-      is_published { false }
+      is_published { 0 }
     end
   end
 end

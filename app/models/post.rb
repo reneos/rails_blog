@@ -1,4 +1,5 @@
 class Post < ApplicationRecord
+  enum is_published: [:unpublished, :published, :scheduled]
   belongs_to :user
   has_many :comments, dependent: :destroy
   has_one_attached :photo, dependent: :destroy
@@ -10,8 +11,7 @@ class Post < ApplicationRecord
   validates :publish_date, presence: true
   validate :publish_date_and_published
 
-  scope :published, -> { where(is_published: true).order(:publish_date) }
-  scope :unpublished, -> { where(is_published: false).order(:publish_date) }
+  default_scope { order(publish_date: :desc) }
 
   acts_as_taggable_on :tags
 
@@ -19,10 +19,6 @@ class Post < ApplicationRecord
 
   def self.search(query)
     Post.where(['content iLIKE :query OR title iLIKE :query', query: "%#{query}%"])
-  end
-
-  def published?
-    is_published
   end
 
   def stripped_content
