@@ -17,3 +17,9 @@ task :create_admin do
     admin: true
   )
 end
+
+desc "Publish scheduled posts"
+task :publish_scheduled_posts => :environment do
+  puts "Publishing scheduled posts"
+  Post.publish_scheduled_posts
+end

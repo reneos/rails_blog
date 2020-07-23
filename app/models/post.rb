@@ -25,6 +25,10 @@ class Post < ApplicationRecord
     ActionView::Base.full_sanitizer.sanitize(content)
   end
 
+  def self.publish_scheduled_posts
+    Post.scheduled.where('publish_date <= ?', Time.now).each(&:published!)
+  end
+
   private
 
   def publish_date_and_published
