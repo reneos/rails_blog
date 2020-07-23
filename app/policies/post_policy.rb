@@ -42,7 +42,7 @@ class PostPolicy < ApplicationPolicy
   end
 
   def show?
-    record.published? || record.user == user
+    record.published? || owner_or_admin?
   end
 
   private
