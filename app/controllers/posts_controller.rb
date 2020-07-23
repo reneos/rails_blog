@@ -56,6 +56,7 @@ class PostsController < ApplicationController
 
   def publish
     authorize @post
+    @post.publish_date = Time.now
     @post.published!
     @post.save
     redirect_to post_path(@post)
