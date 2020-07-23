@@ -1,6 +1,6 @@
 <%= simple_form_for(post) do |f| %>
     <%= f.input :title %>
-    <%= f.input :is_published %>
+    <%= f.input :is_published, collection: Post.is_publisheds, as: :radio_buttons %>
     <%= f.input :publish_date, as: :string, input_html: { id: 'publish_date_picker' },
       hint: 'If you set the publish date to the future, your post will automatically be published at that time.'
     %>
